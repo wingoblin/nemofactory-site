@@ -1,0 +1,120 @@
+{
+  "_설명": "앱별·플랫폼별 최소 지원 버전. 설치 버전이 minVersion 보다 낮으면 업데이트 화면으로 막는다. ⚠️ 스토어에 실제 배포 완료된 버전만 적어라 — 없는 버전을 요구하면 앱이 벽돌이 된다. url 이 비어 있으면 minVersion 이 뭐든 안 막는다(나갈 버튼이 없는 화면이 되기 때문이다). 항목이 없거나 minVersion 이 비면 그 플랫폼은 안 막는다. ⛔ 플랫폼 칸에 두는 키는 minVersion·url 둘뿐이다. built·builtAt·prevBuilt 같은 빌드 기록을 여기 적지 마라 — 손으로 고칠 값과 기계가 적는 값이 섞이면 어느 줄을 고쳐야 하는지 알 수 없다. 그 기록은 배포 바깥의 빌드기록.json 에 있다. ads 블록만 예외다(아래 _ads설명).",
+  "_ads설명": "앱 항목 안에 ads 블록을 넣으면 재빌드 없이 광고를 바꾼다(앱의 src/ads/adRemote.ts 가 읽는다). 전부 선택이고, 없는 항목은 앱에 박힌 값을 쓴다. 형식이 틀린 값은 앱이 조용히 버리고 기본값으로 돈다. 모양: \"ads\": { \"dead\": false, \"gate\": \"interstitial\"|\"rewarded\", \"units\": { \"banner\": {\"android\":\"...\",\"ios\":\"...\"}, \"interstitial\": {...}, \"rewarded\": {...} } }. dead=true 는 그 앱의 광고를 전부 끈다(계정 정지·긴급용). gate 는 \"광고 보면 열림\" 게이트의 포맷이고 코드에 두 경로가 다 있는 앱에서만 먹는다(현재 valley 만). units 키 이름은 앱마다 다르다 — gnomy 는 banner/interstitial/gate 다. ⚠️ 바꿀 수 없는 것: SDK App Key, 네이티브 SDK 유무, app.json·Info.plist. 그건 재빌드다.",
+  "sseuk": {
+    "android": {
+      "minVersion": "1.3.0",
+      "url": "https://play.google.com/store/apps/details?id=com.sseuk.app"
+    },
+    "ios": {
+      "minVersion": "1.3.0",
+      "url": "https://apps.apple.com/app/id6783353560"
+    }
+  },
+  "valley": {
+    "android": {
+      "minVersion": "1.1.0",
+      "url": "https://play.google.com/store/apps/details?id=com.gyegokgaja"
+    },
+    "ios": {
+      "minVersion": "1.1.0",
+      "url": "https://apps.apple.com/app/id6788279171"
+    }
+  },
+  "ssagenalja": {
+    "android": {
+      "minVersion": "1.1.1",
+      "url": "https://play.google.com/store/apps/details?id=com.airpick.app"
+    },
+    "ios": {
+      "minVersion": "1.1.1",
+      "url": "https://apps.apple.com/app/id6781919421"
+    }
+  },
+  "griddy": {
+    "android": {
+      "minVersion": "1.1.5",
+      "url": "https://play.google.com/store/apps/details?id=com.griddy.planner"
+    },
+    "ios": {
+      "minVersion": "1.1.5",
+      "url": "https://apps.apple.com/app/id6794795613"
+    }
+  },
+  "hiking": {
+    "_안드url없음": "2026-08-24 실측: 플레이 목록이 404 다(공개 목록이 없다). 죽은 주소를 두면 업데이트 화면에 눌러도 안 열리는 버튼만 남으므로 비웠다 — url 이 비면 그 플랫폼은 아무도 안 막는다. 목록이 서면 다시 채운다.",
+    "android": {
+      "minVersion": "1.0.3",
+      "url": ""
+    },
+    "ios": {
+      "minVersion": "1.0.3",
+      "url": "https://apps.apple.com/app/id6799130425"
+    }
+  },
+  "gnomy": {
+    "_ios없음": "관상왕은 안드로이드 단독이다. ios 항목을 만들지 마라 — 없으면 그 플랫폼은 아무도 안 막는다.",
+    "android": {
+      "minVersion": "1.0.7",
+      "url": "https://play.google.com/store/apps/details?id=com.gnomy.gwansang"
+    }
+  },
+  "fishing": {
+    "_안드url없음": "플레이에 아직 공개 목록이 없다(비공개 테스트). 목록이 서면 url 을 채운다.",
+    "android": {
+      "minVersion": "1.0.3",
+      "url": ""
+    },
+    "ios": {
+      "minVersion": "1.0.4",
+      "url": "https://apps.apple.com/app/id6799971602"
+    }
+  },
+  "nanotime": {
+    "android": {
+      "minVersion": "1.0.2",
+      "url": ""
+    },
+    "ios": {
+      "minVersion": "1.0.2",
+      "url": "https://apps.apple.com/app/id6801582008"
+    }
+  },
+  "ttangullim": {
+    "android": {
+      "minVersion": "1.0.1",
+      "url": ""
+    },
+    "ios": {
+      "minVersion": "1.0.1",
+      "url": "https://apps.apple.com/app/id6801989349"
+    },
+    "_메모": "2026-08-24 조회: iOS 1.0.1 이 앱스토어에 서 있다(id 6801989349) — minVersion 과 같다. 안드는 플레이 404(비공개 테스트)라 url 을 비워 뒀다."
+  },
+  "recorder": {
+    "android": {
+      "minVersion": "1.0.1",
+      "url": ""
+    },
+    "ios": {
+      "minVersion": "1.0.0",
+      "url": "https://apps.apple.com/app/id6803551516"
+    },
+    "_내려놨다": "2026-08-24 실측: 앱스토어 공개판은 1.0.0 이다. 미리 적어 뒀던 1.0.1 을 그대로 배포하면 1.0.0 이용자 전원이 받을 수 없는 버전을 요구받아 갇히므로 1.0.0 으로 내렸다. 1.0.1 이 실제로 스토어에 선 것을 확인한 뒤에 다시 올려라."
+  },
+  "sallaemallae": {
+    "_내려놨다": "2026-08-24 실측: 앱스토어 공개판은 1.0.0 이다(id 6804422728). 미리 적어 뒀던 1.0.1 을 그대로 배포하면 1.0.0 이용자 전원이 갇히므로 1.0.0 으로 내렸다. 안드는 플레이 404(비공개 테스트)라 url 을 비워 뒀다. 1.0.1 이 스토어에 선 뒤에 다시 올려라.",
+    "android": {
+      "minVersion": "1.0.1",
+      "url": ""
+    },
+    "ios": {
+      "minVersion": "1.0.0",
+      "url": "https://apps.apple.com/app/id6804422728"
+    }
+  },
+  "_읽어라": "minVersion 은 리포의 최신 버전으로 미리 맞춰 두는 방식이다(사용자 지시 — 싹 빌드한 뒤 몰아서 배포). ⚠ 배포 시점에 **그 버전이 스토어에 실제로 서 있는지** 앱마다 확인하고 올려라. 안 서 있으면 그 앱 이용자 전원이 받을 수 없는 버전을 요구받아 앱이 벽돌이 된다. 확인은 한 줄이면 된다: curl -s 'https://itunes.apple.com/lookup?id=<숫자ID>' | python3 -c \"import json,sys;print(json.load(sys.stdin)['results'][0]['version'])\" — ⚠ country 파라미터를 붙이지 마라(2026-08-24 실측: 붙이면 0건이 온다). 여러 앱을 연달아 물으면 애플이 막으니 10초 이상 띄워라. ⚠ iOS 는 **단계적 출시가 기본으로 켜져 있다**(7일). 그 사이엔 새 버전이 일부에게만 가는데 게이트는 전원을 막으므로, 단계적 출시가 끝난 뒤에 올려라. url 이 빈 항목은 안전장치가 걸려 있다 — updateGate 가 http(s) 주소가 아니면 아예 안 막는다.",
+  "_2026-08-24_내려놓기": "배포 직전 전수 실측으로 벽돌 위험을 0 으로 내렸다. 고친 셋: (1) recorder.ios 1.0.1→1.0.0, (2) sallaemallae.ios 1.0.1→1.0.0 — 둘 다 스토어 공개판이 1.0.0 인데 미리 적어 둔 값이 앞서 있었다. (3) hiking.android url 을 비웠다 — 플레이 목록이 404 라 업데이트 버튼이 죽은 주소를 가리켰다. **아래 08-24 실측 메모의 「유일한 예외가 녹음비서다」는 이걸로 해소됐다.** 실측법: iOS 는 `itunes.apple.com/lookup?bundleId=` 를 8초 간격으로, 안드는 플레이 상세 페이지 HTML 에서 [[[\"x.y.z\"]]] 패턴을 긁는다(404 면 공개 목록이 없는 것이다).",
+  "_2026-08-21_스토어실측": "이 날 기준 스토어 공개판: 쓱쓱 1.3.0 · 싸게날자 1.1.1 (여기까진 minVersion 과 같다) / 계곡 1.0.9 · 그리디 1.1.4 · 등산 1.0.2 · 낚시 1.0.2 · 나노타임 1.0.1 (minVersion 이 이보다 앞선다 — 배포 전에 올라가야 한다). 안드로이드 공개 목록은 관상왕 하나뿐이다 — 낚시·나노타임·땅울림·녹음비서는 플레이에서 404 라 url 을 비워 뒀다. 땅울림·녹음비서는 앱스토어에도 아직 없다.",
+  "_2026-08-24_스토어실측": "이 날 iOS 전 앱을 조회로 재측정했다. 스토어 공개판 = minVersion 인 앱: 쓱쓱 1.3.0 · 계곡 1.1.0 · 싸게날자 1.1.1 · 그리디 1.1.5 · 등산 1.0.3 · 낚시 1.0.4 · 나노타임 1.0.2 · 땅울림 1.0.1 · 살래말래 1.0.0. **08-21 메모의 「계곡·그리디·등산·낚시·나노타임은 minVersion 이 스토어보다 앞선다」는 해소됐다** — 전부 따라잡았다. ⚠ 유일한 예외가 **녹음비서**다: 스토어엔 1.0.0 이고 minVersion 1.0.1 은 미리 적어 둔 값이라, 1.0.1 이 실제로 설 때까지 배포하면 안 된다. **08-21 메모의 「땅울림·녹음비서는 앱스토어에도 아직 없다」는 낡았다** — 셋 다(땅울림·녹음비서·살래말래) 나가 있다. 안드는 여전히 관상왕만 공개다 — 낚시·나노타임·땅울림·녹음비서·살래말래는 플레이 404(비공개 테스트)라 url 을 비워 뒀다. ⚠ 조회 요령: `?id=` 로 물으면 애플이 금방 막아 0건을 주는데 **`?bundleId=` 로 물으면 뚫린다**(0건과 차단이 구별이 안 되니 아는 앱 하나를 대조군으로 같이 물어라). 응답 설명문에 제어문자가 섞여 있어 파이썬은 `json.loads(s, strict=False)` 로 읽어야 한다."
+}

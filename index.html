@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>네모팩토리 (Nemo factory)</title>
+<meta name="description" content="네모팩토리(Nemo factory)는 일상을 더 편리하게 만드는 모바일 앱을 만듭니다.">
+<link rel="icon" href="assets/nemo-logo.png">
+<meta property="og:title" content="네모팩토리 (Nemo factory)">
+<meta property="og:description" content="일상을 더 편리하게, 작은 앱으로.">
+<meta property="og:image" content="assets/nemo-logo.png">
+<style>
+  :root {
+    --ink: #1a1b23;
+    --muted: #6e7180;
+    --line: #ecedf3;
+    --accent: #6c5ce7;
+    --accent-soft: #efedfd;
+    --card: #ffffff;
+    --bg: #ffffff;
+    --bg-soft: #f7f7fc;
+    --radius: 18px;
+    --shadow: 0 2px 4px rgba(26, 27, 35, .03), 0 12px 28px rgba(26, 27, 35, .05);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Segoe UI",
+                 "Noto Sans KR", "Malgun Gothic", sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; text-decoration: none; }
+  img { display: block; max-width: 100%; }
+  .wrap { max-width: 1240px; margin: 0 auto; padding: 0 32px; }
+
+  /* ── 상단 내비 ─────────────────────────────── */
+  .nav {
+    position: sticky; top: 0; z-index: 20;
+    background: rgba(255, 255, 255, .86);
+    backdrop-filter: saturate(180%) blur(12px);
+    border-bottom: 1px solid transparent;
+  }
+  .nav.scrolled { border-bottom-color: var(--line); }
+  .nav-in { display: flex; align-items: center; gap: 20px; height: 76px; }
+  .brand { display: flex; align-items: center; gap: 11px; margin-right: auto; }
+  .brand img { width: 38px; height: 38px; border-radius: 11px; }
+  .brand span { font-size: 17px; font-weight: 800; letter-spacing: .4px; }
+  .nav-links { display: flex; gap: 30px; font-size: 15px; font-weight: 600; color: #4a4d5c; }
+  .nav-links a { padding: 4px 0; border-bottom: 2px solid transparent; }
+  .nav-links a:hover { color: var(--accent); }
+  .nav-links a.on { color: var(--ink); border-bottom-color: var(--accent); }
+  .mail-btn {
+    width: 44px; height: 44px; flex: none;
+    display: grid; place-items: center;
+    border: 1px solid var(--line); border-radius: 14px;
+    background: #fff; transition: border-color .15s, transform .15s;
+  }
+  .mail-btn:hover { border-color: var(--accent); transform: translateY(-1px); }
+  .mail-btn svg { width: 19px; height: 19px; stroke: #4a4d5c; }
+
+  /* ── 히어로 ────────────────────────────────── */
+  .hero {
+    position: relative; overflow: hidden;
+    background:
+      radial-gradient(680px 420px at 88% 18%, #eeeaff 0%, rgba(238, 234, 255, 0) 62%),
+      linear-gradient(180deg, #fff 0%, var(--bg-soft) 100%);
+  }
+  .hero-in {
+    display: grid; grid-template-columns: 1.08fr .92fr;
+    gap: 40px; align-items: center;
+    /* padding 단축형을 쓰면 .wrap 의 좌우 여백을 지운다. 세로만 건드려라. */
+    padding-block: 72px 88px;
+  }
+  .eyebrow {
+    font-size: 13px; font-weight: 700; letter-spacing: 3.4px;
+    color: var(--accent); text-transform: uppercase; margin-bottom: 18px;
+  }
+  h1 { font-size: 52px; line-height: 1.22; letter-spacing: -1.4px; font-weight: 800; }
+  h1 .accent { color: var(--accent); }
+  .lede { margin-top: 22px; font-size: 17px; color: var(--muted); }
+
+  .stats {
+    display: flex; margin-top: 34px;
+    background: #fff; border: 1px solid var(--line);
+    border-radius: var(--radius); box-shadow: var(--shadow);
+    padding: 18px 10px;
+  }
+  .stat { flex: 1; display: flex; align-items: center; gap: 12px; padding: 0 16px; }
+  .stat + .stat { border-left: 1px solid var(--line); }
+  .stat-ico {
+    width: 42px; height: 42px; flex: none;
+    display: grid; place-items: center;
+    border-radius: 12px; background: var(--accent-soft);
+  }
+  .stat-ico svg { width: 20px; height: 20px; stroke: var(--accent); }
+  .stat b { display: block; font-size: 21px; font-weight: 800; line-height: 1.25; letter-spacing: -.4px; white-space: nowrap; }
+  .stat small { display: block; font-size: 12px; color: var(--muted); letter-spacing: .3px; white-space: nowrap; }
+
+  .cta { display: flex; gap: 12px; margin-top: 26px; flex-wrap: wrap; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 9px;
+    height: 56px; padding: 0 26px; border-radius: 15px;
+    font-size: 16px; font-weight: 700;
+    transition: transform .15s, box-shadow .15s;
+  }
+  .btn:hover { transform: translateY(-2px); }
+  .btn-light { background: #fff; color: var(--ink); border: 1px solid var(--line); box-shadow: var(--shadow); }
+  .btn-light:hover { border-color: #ddd8fb; }
+  .btn svg { width: 19px; height: 19px; }
+
+  .hero-art { display: grid; place-items: center; }
+  .pedestal { position: relative; width: 100%; max-width: 380px; aspect-ratio: 1 / 1; display: grid; place-items: center; }
+  .pedestal::before {
+    content: ""; position: absolute; inset: 6% 6% 10%;
+    border-radius: 44%;
+    background: linear-gradient(150deg, #8b7cf0, #6c5ce7 55%, #5a4bd4);
+    filter: blur(2px); opacity: .16;
+  }
+  .pedestal::after {
+    content: ""; position: absolute; left: 50%; bottom: 8%;
+    width: 62%; height: 22px; transform: translateX(-50%);
+    border-radius: 50%; background: rgba(108, 92, 231, .16); filter: blur(9px);
+  }
+  /* 로고 PNG 는 배경이 흰색이다(투명 아님). 둥근 타일로 감싸 앱 아이콘처럼 보이게 한다. */
+  .pedestal img {
+    position: relative; width: 62%; max-width: 236px;
+    border-radius: 23%;
+    box-shadow: 0 22px 44px rgba(70, 58, 160, .26), 0 2px 6px rgba(70, 58, 160, .12);
+  }
+  .dot { position: absolute; border-radius: 50%; background: rgba(108, 92, 231, .22); }
+  .dot.a { width: 26px; height: 26px; right: 6%; bottom: 20%; background: rgba(108, 92, 231, .3); }
+  .dot.b { width: 12px; height: 12px; left: 4%; top: 22%; }
+
+  /* ── 섹션 공통 ─────────────────────────────── */
+  section.block { padding: 84px 0; }
+  .sec-head { margin-bottom: 32px; }
+  .sec-eyebrow {
+    display: flex; align-items: center; gap: 9px;
+    font-size: 13px; font-weight: 700; letter-spacing: 2.4px;
+    color: var(--accent); text-transform: uppercase;
+  }
+  .sec-eyebrow::before { content: ""; width: 9px; height: 9px; border-radius: 50%; background: var(--accent); }
+  .sec-head p { margin-top: 10px; font-size: 15px; color: var(--muted); }
+
+  /* ── 앱 카드 ───────────────────────────────── */
+  .apps { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .app {
+    position: relative;
+    display: grid; grid-template-columns: 64px 1fr; gap: 16px; align-items: start;
+    background: var(--card); border: 1px solid var(--line);
+    border-radius: var(--radius); padding: 20px;
+    transition: border-color .18s, box-shadow .18s, transform .18s;
+  }
+  .app:hover { border-color: #ddd8fb; box-shadow: var(--shadow); transform: translateY(-2px); }
+  .app > img { width: 64px; height: 64px; border-radius: 16px; }
+  .app-name { font-size: 17px; font-weight: 700; letter-spacing: -.2px; padding-right: 26px; }
+  .app-desc { margin-top: 4px; font-size: 14px; color: var(--muted); line-height: 1.5; }
+  .chev { position: absolute; top: 26px; right: 20px; width: 16px; height: 16px; stroke: #c6c8d4; }
+  .app:hover .chev { stroke: var(--accent); }
+  .store {
+    display: flex; align-items: center; gap: 8px; margin-top: 14px; flex-wrap: wrap;
+  }
+  .store a {
+    display: grid; place-items: center;
+    width: 38px; height: 38px; border-radius: 11px;
+    border: 1px solid var(--line); background: #fff;
+    transition: border-color .15s, background .15s;
+  }
+  .store a:hover { border-color: var(--accent); background: var(--accent-soft); }
+  .store a svg { width: 17px; height: 17px; }
+  /* 방침은 아이콘과 글자를 한 링크로 묶는다. 글자만 눌렀을 때 안 먹으면 안 된다. */
+  .store a.policy {
+    display: flex; align-items: center; gap: 8px;
+    width: auto; height: auto; border: 0; background: none; border-radius: 11px;
+  }
+  .store a.policy .box {
+    width: 38px; height: 38px; flex: none;
+    display: grid; place-items: center;
+    border: 1px solid var(--line); border-radius: 11px; background: #fff;
+    transition: border-color .15s, background .15s;
+  }
+  .store a.policy .t { font-size: 11px; color: #9a9db0; transition: color .15s; }
+  .store a.policy:hover { background: none; }
+  .store a.policy:hover .box { border-color: var(--accent); background: var(--accent-soft); }
+  .store a.policy:hover .t { color: var(--accent); }
+
+  /* ── 회사소개 ──────────────────────────────── */
+  .company { background: var(--bg-soft); }
+  .info {
+    background: #fff; border: 1px solid var(--line); border-radius: var(--radius);
+    box-shadow: var(--shadow); padding: 34px 36px;
+  }
+  .info dl { display: grid; grid-template-columns: 190px 1fr; gap: 14px 20px; font-size: 15px; }
+  .info dt { color: var(--muted); font-weight: 600; }
+  .info dd + dt { border-top: 1px solid var(--line); padding-top: 14px; }
+  .info dd { border-top: 1px solid var(--line); padding-top: 14px; }
+  .info dl > dt:first-of-type, .info dl > dd:first-of-type { border-top: 0; padding-top: 0; }
+  .info dd a { color: var(--accent); font-weight: 600; }
+  .info .en { display: block; font-size: 13px; color: #9a9db0; }
+
+  /* ── 푸터 ──────────────────────────────────── */
+  footer { padding: 0 0 56px; }
+  .foot {
+    display: flex; align-items: center; gap: 24px; flex-wrap: wrap;
+    background: #fff; border: 1px solid var(--line); border-radius: var(--radius);
+    box-shadow: var(--shadow); padding: 30px 34px;
+  }
+  .foot-copy { margin-right: auto; }
+  .foot-copy strong { display: block; font-size: 19px; font-weight: 700; line-height: 1.45; letter-spacing: -.3px; }
+  .foot-copy small { font-size: 13px; color: var(--muted); }
+  .foot-right { display: flex; flex-direction: column; align-items: flex-end; gap: 14px; }
+  .foot-links { display: flex; gap: 10px; }
+  .foot-links a {
+    width: 46px; height: 46px; display: grid; place-items: center;
+    border-radius: 14px; background: var(--accent-soft);
+    transition: background .15s, transform .15s;
+  }
+  .foot-links a:hover { background: #e2ddfc; transform: translateY(-2px); }
+  .foot-links svg { width: 20px; height: 20px; stroke: var(--accent); }
+  .copyright { font-size: 12px; color: #9a9db0; text-align: right; }
+
+  /* ── 좁은 화면 ─────────────────────────────── */
+  @media (max-width: 900px) {
+    .nav-links { display: none; }
+    .hero-in { grid-template-columns: 1fr; padding-block: 52px 64px; gap: 44px; }
+    .hero-art { order: -1; }
+    .pedestal { max-width: 280px; }
+    h1 { font-size: 38px; letter-spacing: -1px; }
+    .apps { grid-template-columns: 1fr; }
+    section.block { padding: 62px 0; }
+  }
+  @media (max-width: 620px) {
+    .wrap { padding: 0 18px; }
+    h1 { font-size: 32px; }
+    .stats { flex-direction: column; gap: 4px; padding: 12px 6px; }
+    .stat { padding: 10px 14px; }
+    .stat + .stat { border-left: 0; border-top: 1px solid var(--line); }
+    .btn { flex: 1; justify-content: center; padding: 0 18px; }
+    .info { padding: 26px 22px; }
+    .info dl { grid-template-columns: 1fr; gap: 0; }
+    .info dt { padding-top: 16px; border-top: 1px solid var(--line); }
+    .info dd { padding-top: 2px; border-top: 0; }
+    .info dl > dt:first-of-type { padding-top: 0; }
+    .foot { padding: 24px 22px; gap: 18px; }
+    .foot-right { align-items: flex-start; }
+    .copyright { text-align: left; }
+  }
+</style>
+</head>
+<body>
+
+<!-- 아이콘은 전부 인라인 SVG 다. 외부 요청 없이 끝내려고 그렇게 뒀다. -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-apple" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M16.4 12.8c0-2.3 1.9-3.4 2-3.5-1.1-1.6-2.8-1.8-3.4-1.8-1.4-.1-2.8.9-3.5.9-.7 0-1.8-.9-3-.8-1.5 0-2.9.9-3.7 2.3-1.6 2.7-.4 6.8 1.1 9 .8 1.1 1.7 2.3 2.9 2.2 1.2 0 1.6-.7 3-.7s1.8.7 3 .7c1.3 0 2.1-1.1 2.8-2.2.9-1.2 1.3-2.5 1.3-2.5s-2.5-1-2.5-3.6zM14.2 5.9c.6-.8 1.1-1.9 1-3-.9 0-2.1.6-2.7 1.4-.6.7-1.2 1.8-1 2.9 1 .1 2.1-.5 2.7-1.3z"/>
+    </symbol>
+    <symbol id="i-play" viewBox="0 0 24 24">
+      <path fill="#34A853" d="M4.2 2.6 14 12l-9.8 9.4c-.4-.2-.7-.7-.7-1.4V4c0-.7.3-1.2.7-1.4z"/>
+      <path fill="#FBBC04" d="M14 12 4.2 2.6c.1-.1.3-.1.4-.1.3 0 .6.1.9.3l11.1 6.3L14 12z"/>
+      <path fill="#EA4335" d="M16.6 15L5.5 21.2c-.3.2-.6.3-.9.3-.1 0-.3 0-.4-.1L14 12l2.6 3z"/>
+      <path fill="#4285F4" d="M20 10.7c.6.4 1 .8 1 1.3s-.4 1-1 1.3l-3.4 1.9L14 12l2.6-2.9L20 10.7z"/>
+    </symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="#6e7180" stroke-width="1.9"
+            stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 3l7 3v5.5c0 4.4-2.9 8.3-7 9.5-4.1-1.2-7-5.1-7-9.5V6l7-3z"/>
+      <path d="M9.4 12.2l1.9 1.9 3.5-3.6"/>
+    </symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+            stroke-linecap="round" stroke-linejoin="round">
+      <rect x="3" y="5.5" width="18" height="13" rx="2.5"/>
+      <path d="M3.5 7.5l8.5 6 8.5-6"/>
+    </symbol>
+    <symbol id="i-chev" viewBox="0 0 24 24" fill="none" stroke-width="2.2"
+            stroke-linecap="round" stroke-linejoin="round">
+      <path d="M9 5l7 7-7 7"/>
+    </symbol>
+  </defs>
+</svg>
+
+<nav class="nav" id="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="#top">
+      <img src="assets/nemo-logo.png" alt="">
+      <span>NEMO FACTORY</span>
+    </a>
+    <div class="nav-links">
+      <a href="#apps" class="on">앱</a>
+      <a href="#company">회사소개</a>
+    </div>
+    <a class="mail-btn" href="mailto:contact@nemofactory.co.kr" aria-label="문의 메일 보내기">
+      <svg><use href="#i-mail"/></svg>
+    </a>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap hero-in">
+    <div>
+      <div class="eyebrow">Nemo Factory</div>
+      <h1>일상을 더 편리하게,<br><span class="accent">작은 앱</span>으로.</h1>
+      <p class="lede">네모팩토리는 생활을 더 편리하게 만드는<br>모바일 앱을 만듭니다.</p>
+
+      <div class="stats">
+        <div class="stat">
+          <span class="stat-ico">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3.5" y="5" width="17" height="15.5" rx="3"/>
+              <path d="M3.5 9.8h17M8 3.5v3M16 3.5v3"/>
+            </svg>
+          </span>
+          <span><b>2026</b><small>Since</small></span>
+        </div>
+        <div class="stat">
+          <span class="stat-ico">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="7" y="2.6" width="10" height="18.8" rx="2.6"/>
+              <path d="M10.8 18.3h2.4"/>
+            </svg>
+          </span>
+          <span><b>iOS · Android</b><small>Platform</small></span>
+        </div>
+        <div class="stat">
+          <span class="stat-ico">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3.5" y="3.5" width="7" height="7" rx="2"/><rect x="13.5" y="3.5" width="7" height="7" rx="2"/>
+              <rect x="3.5" y="13.5" width="7" height="7" rx="2"/><rect x="13.5" y="13.5" width="7" height="7" rx="2"/>
+            </svg>
+          </span>
+          <span><b>11</b><small>Apps</small></span>
+        </div>
+      </div>
+
+      <div class="cta">
+        <a class="btn btn-light" href="#apps">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+               stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3.5" y="3.5" width="7" height="7" rx="2"/><rect x="13.5" y="3.5" width="7" height="7" rx="2"/>
+            <rect x="3.5" y="13.5" width="7" height="7" rx="2"/><rect x="13.5" y="13.5" width="7" height="7" rx="2"/>
+          </svg>
+          앱 둘러보기
+        </a>
+        <a class="btn btn-light" href="mailto:contact@nemofactory.co.kr">
+          <svg style="stroke:#1a1b23"><use href="#i-mail"/></svg>
+          문의하기
+        </a>
+      </div>
+    </div>
+
+    <div class="hero-art">
+      <div class="pedestal">
+        <span class="dot a"></span>
+        <span class="dot b"></span>
+        <img src="assets/nemo-logo.png" alt="네모팩토리 로고">
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+<section class="block" id="apps">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-eyebrow">Our Apps</div>
+      <p>네모팩토리가 만든 앱들을 만나보세요.</p>
+    </div>
+
+    <div class="apps">
+
+      <div class="app">
+        <img src="assets/apps/sseuk.png" alt="">
+        <div>
+          <a class="app-name" href="https://apps.apple.com/kr/app/id6783353560">쓱쓱가계부</a>
+          <p class="app-desc">쉽고 빠르게 쓰는 가계부</p>
+          <div class="store">
+            <a href="https://apps.apple.com/kr/app/id6783353560" aria-label="App Store"><svg><use href="#i-apple"/></svg></a>
+            <a href="https://play.google.com/store/apps/details?id=com.sseuk.app&hl=ko&gl=KR" aria-label="Google Play"><svg><use href="#i-play"/></svg></a>
+            <a class="policy" href="https://wingoblin.github.io/policy/sseuk/">
+              <span class="box"><svg><use href="#i-shield"/></svg></span>
+              <span class="t">개인정보처리방침</span>
+            </a>
+          </div>
+        </div>
+        <svg class="chev"><use href="#i-chev"/></svg>
+      </div>
+
+      <div class="app">
+        <img src="assets/apps/valley.png" alt="">
+        <div>
+          <a class="app-name" href="https://apps.apple.com/kr/app/id6788279171">계곡가자</a>
+          <p class="app-desc">전국 계곡 정보를 한눈에</p>
+          <div class="store">
+            <a href="https://apps.apple.com/kr/app/id6788279171" aria-label="App Store"><svg><use href="#i-apple"/></svg></a>
+            <a href="https://play.google.com/store/apps/details?id=com.gyegokgaja&hl=ko&gl=KR" aria-label="Google Play"><svg><use href="#i-play"/></svg></a>
+            <a class="policy" href="https://wingoblin.github.io/policy/valley/">
+              <span class="box"><svg><use href="#i-shield"/></svg></span>
+              <span class="t">개인정보처리방침</span>
+            </a>
+          </div>
+        </div>
+        <svg class="chev"><use href="#i-chev"/></svg>
+      </div>
+
+      <div class="app">
+        <img src="assets/apps/ssagenalja.png" alt="">
+        <div>
+          <a class="app-name" href="https://apps.apple.com/kr/app/id6781919421">싸게날자</a>
+          <p class="app-desc">저렴한 항공권을 쉽게 찾아보세요</p>
+          <div class="store">
+            <a href="https://apps.apple.com/kr/app/id6781919421" aria-label="App Store"><svg><use href="#i-apple"/></svg></a>
+            <a href="https://play.google.com/store/apps/details?id=com.airpick.app&hl=ko&gl=KR" aria-label="Google Play"><svg><use href="#i-play"/></svg></a>
+            <a class="policy" href="https://wingoblin.github.io/policy/ssagenalja/">
+              <span class="box"><svg><use href="#i-shield"/></svg></span>
+              <span class="t">개인정보처리방침</span>
+            </a>
+          </div>
+        </div>
+        <svg class="chev"><use href="#i-chev"/></svg>
+      </div>
+
+      <div class="app">
+        <img src="assets/apps/griddy.png" alt="">
+        <div>
+          <a class="app-name" href="https://apps.apple.com/kr/app/id6794795613">Griddy</a>
+          <p class="app-desc">오늘 할 일을 위젯으로 체크하세요</p>
+          <div class="store">
+            <a href="https://apps.apple.com/kr/app/id6794795613" aria-label="App Store"><svg><use href="#i-apple"/></svg></a>
+            <a href="https://play.google.com/store/apps/details?id=com.griddy.planner&hl=ko&gl=KR" aria-label="Google Play"><svg><use href="#i-play"/></svg></a>
+            <a class="policy" href="https://wingoblin.github.io/policy/griddy/">
+              <span class="box"><svg><use href="#i-shield"/></svg></span>
+              <span class="t">개인정보처리방침</span>
+            </a>
+          </div>
+        </div>
+        <svg class="chev"><use href="#i-chev"/></svg>
+      </div>
+
+      <div class="app">
+        <img src="assets/apps/hiking.png" alt="">
+        <div>
+          <a class="app-name" href="https://apps.apple.com/kr/app/id6799130425">등산가자</a>
+          <p class="app-desc">등산 코스와 완등 기록을 한눈에</p>
+          <div class="store">
+            <a href="https://apps.apple.com/kr/app/id6799130425" aria-label="App Store"><svg><use href="#i-apple"/></svg></a>
+            <a href="https://play.google.com/store/apps/details?id=com.deungsanhaja&hl=ko&gl=KR" aria-label="Google Play"><svg><use href="#i-play"/></svg></a>
+            <a class="policy" href="https://wingoblin.github.io/policy/hiking/">
+              <span class="box"><svg><use href="#i-shield"/></svg></span>
+              <span class="t">개인정보처리방침</span>
+            </a>
+          </div>
+        </div>
+        <svg class="chev"><use href="#i-chev"/></svg>
+      </div>
+
+      <div class="app">
+        <img src="assets/apps/gwansang.png" alt="">
+        <div>
+          <a class="app-name" href="https://play.google.com/store/apps/details?id=com.gnomy.gwansang&hl=ko&gl=KR">내가 왕이 될 상인가?</a>
+          <p class="app-desc">사진으로 보는 관상 풀이</p>
+          <div class="store">
+            <a href="https://play.google.com/store/apps/details?id=com.gnomy.gwansang&hl=ko&gl=KR" aria-label="Google Play"><svg><use href="#i-play"/></svg></a>
+            <a class="policy" href="https://wingoblin.github.io/policy/gwansang/">
+              <span class="box"><svg><use href="#i-shield"/></svg></span>
+              <span class="t">개인정보처리방침</span>
+            </a>
+          </div>
+        </div>
+        <svg class="chev"><use href="#i-chev"/></svg>
+      </div>
+
+      <div class="app">
+        <img src="assets/apps/fishing.png" alt="">
+        <div>
+          <a class="app-name" href="https://apps.apple.com/kr/app/id6799971602">낚시가자</a>
+          <p class="app-desc">물때로 보는 바다낚시 판정</p>
+          <div class="store">
+            <a href="https://apps.apple.com/kr/app/id6799971602" aria-label="App Store"><svg><use href="#i-apple"/></svg></a>
+            <a class="policy" href="https://wingoblin.github.io/policy/nakshigaja/">
+              <span class="box"><svg><use href="#i-shield"/></svg></span>
+              <span class="t">개인정보처리방침</span>
+            </a>
+          </div>
+        </div>
+        <svg class="chev"><use href="#i-chev"/></svg>
+      </div>
+
+      <div class="app">
+        <img src="assets/apps/nanotime.png" alt="">
+        <div>
+          <a class="app-name" href="https://apps.apple.com/kr/app/id6801582008">나노타임</a>
+          <p class="app-desc">정각을 잡아주는 서버 시계</p>
+          <div class="store">
+            <a href="https://apps.apple.com/kr/app/id6801582008" aria-label="App Store"><svg><use href="#i-apple"/></svg></a>
+            <a class="policy" href="https://wingoblin.github.io/policy/nanotime/">
+              <span class="box"><svg><use href="#i-shield"/></svg></span>
+              <span class="t">개인정보처리방침</span>
+            </a>
+          </div>
+        </div>
+        <svg class="chev"><use href="#i-chev"/></svg>
+      </div>
+
+      <div class="app">
+        <img src="assets/apps/quake.png" alt="">
+        <div>
+          <a class="app-name" href="https://apps.apple.com/kr/app/id6801989349">땅울림</a>
+          <p class="app-desc">지진 정보를 실시간으로</p>
+          <div class="store">
+            <a href="https://apps.apple.com/kr/app/id6801989349" aria-label="App Store"><svg><use href="#i-apple"/></svg></a>
+            <a class="policy" href="https://wingoblin.github.io/policy/ttangullim/">
+              <span class="box"><svg><use href="#i-shield"/></svg></span>
+              <span class="t">개인정보처리방침</span>
+            </a>
+          </div>
+        </div>
+        <svg class="chev"><use href="#i-chev"/></svg>
+      </div>
+
+      <div class="app">
+        <img src="assets/apps/recorder.png" alt="">
+        <div>
+          <a class="app-name" href="https://apps.apple.com/kr/app/id6803551516">녹음비서</a>
+          <p class="app-desc">녹음을 글로 옮기고 요약까지</p>
+          <div class="store">
+            <a href="https://apps.apple.com/kr/app/id6803551516" aria-label="App Store"><svg><use href="#i-apple"/></svg></a>
+            <a class="policy" href="https://wingoblin.github.io/policy/nogeumbiseo/">
+              <span class="box"><svg><use href="#i-shield"/></svg></span>
+              <span class="t">개인정보처리방침</span>
+            </a>
+          </div>
+        </div>
+        <svg class="chev"><use href="#i-chev"/></svg>
+      </div>
+
+      <div class="app">
+        <img src="assets/apps/sallaemallae.png" alt="">
+        <div>
+          <a class="app-name" href="https://apps.apple.com/kr/app/id6804422728">살래말래</a>
+          <p class="app-desc">사는 기분만 사는 가상 쇼핑</p>
+          <div class="store">
+            <a href="https://apps.apple.com/kr/app/id6804422728" aria-label="App Store"><svg><use href="#i-apple"/></svg></a>
+            <a class="policy" href="https://wingoblin.github.io/policy/sallaemallae/">
+              <span class="box"><svg><use href="#i-shield"/></svg></span>
+              <span class="t">개인정보처리방침</span>
+            </a>
+          </div>
+        </div>
+        <svg class="chev"><use href="#i-chev"/></svg>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="block company" id="company">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-eyebrow">Company</div>
+      <p>사업자 정보와 문의처입니다.</p>
+    </div>
+    <div class="info">
+      <dl>
+        <dt>상호 / Company</dt>
+        <dd>네모팩토리 (Nemo factory)</dd>
+        <dt>대표자 / Representative</dt>
+        <dd>양성민 (Yang Sungmin)</dd>
+        <dt>사업자등록번호 / Reg. No.</dt>
+        <dd>574-64-00804</dd>
+        <dt>주소 / Address</dt>
+        <dd>경상북도 경산시 장산로 319
+          <span class="en">319 Jangsan-ro, Gyeongsan-si, Gyeongsangbuk-do, Republic of Korea</span></dd>
+        <dt>문의 / Email</dt>
+        <dd><a href="mailto:contact@nemofactory.co.kr">contact@nemofactory.co.kr</a></dd>
+      </dl>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div class="foot-copy">
+        <strong>작은 아이디어로<br>더 나은 일상을 만듭니다.</strong>
+        <small>Nemo Factory</small>
+      </div>
+      <div class="foot-right">
+        <div class="foot-links">
+          <a href="mailto:contact@nemofactory.co.kr" aria-label="문의 메일 보내기">
+            <svg><use href="#i-mail"/></svg>
+          </a>
+        </div>
+        <div class="copyright">© 2026 네모팩토리 (Nemo factory). All rights reserved.</div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // 스크롤하면 내비 밑에 실선을 긋는다. 맨 위에서는 배경과 이어져 보이게 둔다.
+  var nav = document.getElementById('nav');
+  var onScroll = function () { nav.classList.toggle('scrolled', window.scrollY > 8); };
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+</script>
+
+</body>
+</html>
