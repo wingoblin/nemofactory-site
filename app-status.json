@@ -1,0 +1,195 @@
+{
+  "_설명": "앱별·플랫폼별 최소 지원 버전. 설치 버전이 minVersion 보다 낮으면 업데이트 화면으로 막는다. ⚠️ 스토어에 실제 배포 완료된 버전만 적어라 — 없는 버전을 요구하면 앱이 벽돌이 된다. url 이 비어 있으면 minVersion 이 뭐든 안 막는다(나갈 버튼이 없는 화면이 되기 때문이다). 항목이 없거나 minVersion 이 비면 그 플랫폼은 안 막는다. ⛔ 플랫폼 칸에 두는 키는 minVersion·url 둘뿐이다. built·builtAt·prevBuilt 같은 빌드 기록을 여기 적지 마라 — 손으로 고칠 값과 기계가 적는 값이 섞이면 어느 줄을 고쳐야 하는지 알 수 없다. 그 기록은 배포 바깥의 빌드기록.json 에 있다. ads 블록만 예외다(아래 _ads설명).",
+  "_ads설명": "앱 항목 안에 ads 블록을 넣으면 재빌드 없이 광고를 바꾼다(앱의 src/ads/adRemote.ts 가 읽는다). 전부 선택이고, 없는 항목은 앱에 박힌 값을 쓴다. 형식이 틀린 값은 앱이 조용히 버리고 기본값으로 돈다. 모양: \"ads\": { \"dead\": false, \"gate\": \"interstitial\"|\"rewarded\", \"units\": { \"banner\": {\"android\":\"...\",\"ios\":\"...\"}, \"interstitial\": {...}, \"rewarded\": {...} } }. dead=true 는 그 앱의 광고를 전부 끈다(계정 정지·긴급용). gate 는 \"광고 보면 열림\" 게이트의 포맷이고 코드에 두 경로가 다 있는 앱에서만 먹는다(현재 valley 만). units 키 이름은 앱마다 다르다 — gnomy 는 banner/interstitial/gate 다. ⚠️ 바꿀 수 없는 것: SDK App Key, 네이티브 SDK 유무, app.json·Info.plist. 그건 재빌드다.",
+  "sseuk": {
+    "android": {
+      "minVersion": "1.3.5",
+      "url": "https://play.google.com/store/apps/details?id=com.sseuk.app"
+    },
+    "ios": {
+      "minVersion": "1.3.5",
+      "url": "https://apps.apple.com/app/id6783353560"
+    }
+  },
+  "valley": {
+    "android": {
+      "minVersion": "1.1.6",
+      "url": "https://play.google.com/store/apps/details?id=com.gyegokgaja"
+    },
+    "ios": {
+      "minVersion": "1.1.6",
+      "url": "https://apps.apple.com/app/id6788279171"
+    }
+  },
+  "ssagenalja": {
+    "android": {
+      "minVersion": "1.1.4",
+      "url": "https://play.google.com/store/apps/details?id=com.airpick.app"
+    },
+    "ios": {
+      "minVersion": "1.1.4",
+      "url": "https://apps.apple.com/app/id6781919421"
+    }
+  },
+  "griddy": {
+    "android": {
+      "minVersion": "1.3.1",
+      "url": "https://play.google.com/store/apps/details?id=com.griddy.planner"
+    },
+    "ios": {
+      "minVersion": "1.3.1",
+      "url": "https://apps.apple.com/app/id6794795613"
+    }
+  },
+  "hiking": {
+    "android": {
+      "minVersion": "1.1.6",
+      "url": "https://play.google.com/store/apps/details?id=com.deungsanhaja"
+    },
+    "ios": {
+      "minVersion": "1.1.6",
+      "url": "https://apps.apple.com/app/id6799130425"
+    }
+  },
+  "gnomy": {
+    "_ios없음": "관상왕은 안드로이드 단독이다. ios 항목을 만들지 마라 — 없으면 그 플랫폼은 아무도 안 막는다.",
+    "android": {
+      "minVersion": "1.1.1",
+      "url": "https://play.google.com/store/apps/details?id=com.gnomy.gwansang"
+    }
+  },
+  "fishing": {
+    "_안드": "2026-08-29 에 플레이 공개 목록이 섰다(그전까지 404·비공개 테스트). url 을 채웠으므로 이 칸의 게이트는 이제 실제로 동작한다.",
+    "android": {
+      "minVersion": "1.1.5",
+      "url": "https://play.google.com/store/apps/details?id=com.nakshigaja"
+    },
+    "ios": {
+      "minVersion": "1.1.5",
+      "url": "https://apps.apple.com/app/id6799971602"
+    }
+  },
+  "nanotime": {
+    "android": {
+      "minVersion": "1.1.0",
+      "url": "https://play.google.com/store/apps/details?id=com.nanotime.app"
+    },
+    "ios": {
+      "minVersion": "1.1.0",
+      "url": "https://apps.apple.com/app/id6801582008"
+    }
+  },
+  "ttangullim": {
+    "_안드": "2026-09-06 에 플레이 공개 목록이 처음 섰다(1.0.4, 그전까지 404·비공개 테스트). url 을 채웠으므로 이 칸의 게이트는 이제 실제로 동작한다.",
+    "android": {
+      "minVersion": "1.0.7",
+      "url": "https://play.google.com/store/apps/details?id=com.ttangullim"
+    },
+    "ios": {
+      "minVersion": "1.0.7",
+      "url": "https://apps.apple.com/app/id6801989349"
+    }
+  },
+  "recorder": {
+    "android": {
+      "minVersion": "1.0.0",
+      "url": ""
+    },
+    "ios": {
+      "minVersion": "1.1.3",
+      "url": "https://apps.apple.com/app/id6803551516"
+    }
+  },
+  "sallaemallae": {
+    "android": {
+      "minVersion": "1.1.0",
+      "url": "https://play.google.com/store/apps/details?id=com.sallaemallae"
+    },
+    "ios": {
+      "minVersion": "1.1.0",
+      "url": "https://apps.apple.com/app/id6804422728"
+    },
+    "ads": {
+      "units": {
+        "interstitial": {
+          "ios": "eysnbsic3r2v097f"
+        }
+      }
+    }
+  },
+  "scrap": {
+    "_iOS": "2026-09-14 에 1.0.0(build 6)이 App Store 에 섰다(lookup currentVersionReleaseDate 09-14). url 을 채웠으므로 이 칸의 게이트는 이제 실제로 동작한다. 1.0.1(11)은 DEVELOPER_REJECTED 라 스토어에 없다 — 기준이 아니다.",
+    "_안드": "2026-09-16 Play 목록 404(미출시). url 이 비어 있어 아무도 안 막는다 — 공개 목록이 설 때까지 그대로 둬라.",
+    "android": {
+      "minVersion": "1.0.9",
+      "url": "https://play.google.com/store/apps/details?id=co.nemofactory.scrap"
+    },
+    "ios": {
+      "minVersion": "1.0.9",
+      "url": "https://apps.apple.com/app/id6811511380"
+    },
+    "ads": {
+      "dead": false
+    }
+  },
+  "garyeojwo": {
+    "_iOS": "2026-09-17 실측: 1.0.2(18) 이 READY_FOR_SALE (ASC createdDate 09-15). 심사 완료돼 스토어에 섰다(사용자 확인 2026-09-17 「가려줘 이미 1.0.2 심사 완료됐어」). minVersion 을 1.0.2 로 올리고 넷틸파이 배포에 포함했다(사용자 지시 「다 배포된 거 체크해서 싹 올려」). 히스토리: 1.0.0(13) 09-04 첫 출시 · 1.0.1(16) 09-15 · 1.0.2(18) 은 스페인어 등 여섯 말을 더한 판.",
+    "_안드": "2026-09-16 Play 목록 404(미출시). 1.0.1 을 굽기만 했다. url 이 비어 있어 아무도 안 막는다.",
+    "android": {
+      "minVersion": "1.0.7",
+      "url": "https://play.google.com/store/apps/details?id=com.garyeojwo"
+    },
+    "ios": {
+      "minVersion": "1.0.7",
+      "url": "https://apps.apple.com/app/id6808574311"
+    }
+  },
+  "offme": {
+    "_메모": "2026-10-02 안드 프로덕션 출시(url 채움). iOS 는 아직 스토어에 없다(kr 404) — 서면 url 을 채우고 minVersion 을 선 판으로.",
+    "android": {
+      "minVersion": "1.0.5",
+      "url": "https://play.google.com/store/apps/details?id=com.offme.app"
+    },
+    "ios": {
+      "minVersion": "1.0.5",
+      "url": ""
+    }
+  },
+  "pixelfriends": {
+    "_메모": "2026-10-02 키 첫 추가. iOS 만(안드 없음). 판매 중 1.0.1 · minVersion 은 막지 않는 1.0.0.",
+    "ios": {
+      "minVersion": "1.0.3",
+      "url": "https://apps.apple.com/app/id6816387752"
+    }
+  },
+  "earthhere": {
+    "_메모": "2026-10-02 키 첫 추가. iOS 1.0.2 판매 중 · 안드 com.earthhere 는 아직 Play 공개 전(404) — 서면 url 을 채워라. minVersion 은 막지 않는 1.0.0.",
+    "android": {
+      "minVersion": "1.0.3",
+      "url": "https://play.google.com/store/apps/details?id=com.earthhere"
+    },
+    "ios": {
+      "minVersion": "1.0.3",
+      "url": "https://apps.apple.com/app/id6813409712"
+    }
+  },
+  "tingle": {
+    "_메모": "2026-10-16 키 첫 추가. iOS 는 아직 심사 전(ASC 6823044353) · 안드 com.tingle 은 비공개 테스트라 Play 공개 목록 404. minVersion 은 막지 않는 1.0.0 — 각 플랫폼이 스토어에 실제로 선 뒤에만 올려라(안 선 채로 올리면 404 로 보내는 벽돌). iOS 번들은 com.tingleapp · 안드 패키지는 com.tingle 로 다르다.",
+    "android": {
+      "minVersion": "1.0.0",
+      "url": "https://play.google.com/store/apps/details?id=com.tingle"
+    },
+    "ios": {
+      "minVersion": "1.0.0",
+      "url": "https://apps.apple.com/app/id6823044353"
+    }
+  },
+  "_2026-09-13_스토어실측": "ASC 로 iOS 열 전수 · Play 목록으로 안드 여덟 전수 재측정. 올린 셋(전부 iOS — 09-11 에 심사중이라 못 올렸던 판이 그 뒤 통과했다): 그리디 1.1.9→1.2.0(build 57) · 등산 1.0.8→1.0.9(32) · 낚시 1.1.0→1.1.1(44). 나머지 일곱은 실측과 일치해 그대로: 쓱쓱 1.3.3 · 계곡 1.1.4 · 싸게날자 1.1.4 · 나노타임 1.0.8 · 땅울림 1.0.6 · Tovo 1.0.9 · 살래말래 1.0.6. **안드는 여덟 전부 지금 값 그대로 맞다** — Play 목록 실측: 쓱쓱 1.3.3 · 계곡 1.1.4 · 싸게날자 1.1.4 · 그리디 1.2.0 · 등산 1.0.9 · 관상왕 1.0.8 · 낚시 1.1.1 · 땅울림 1.0.6. 비공개 셋(나노타임·Tovo·살래말래)도 404 재확인, minVersion 1.0.0·url 빈 칸 유지. ⚠ **올린 iOS 셋은 셋 다 단계적 출시 창(7일) 안이다** — lookup 의 currentVersionReleaseDate: 그리디 1.2.0 **09-12(어제)** · 등산 1.0.9 09-11 · 낚시 1.1.1 09-11. 창이 닫히는 건 대략 09-19·09-18·09-18 이다. iOS 는 대상 밖 사용자도 스토어에서 손으로 받을 수 있어 벽돌은 아니지만, 급하지 않으면 그때 배포해라. 안드는 이번에 올린 게 없어 Play 콘솔 100% 확인이 새로 필요한 앱은 없다. ℹ 미출시 재확인: 가려줘 1.0.0(13) WAITING_FOR_REVIEW · 오프미 1.0.0 PREPARE_FOR_SUBMISSION · 여기는지구는 ASC 에 앱 자체가 없다 — 셋 다 이 파일에 키를 넣지 않았다(넣어도 막을 판이 없다).",
+  "_2026-09-11_스토어실측": "ASC 로 iOS 열 전수 · Play 목록으로 안드 여덟 전수 재측정하고 minVersion 을 **그 시점에 스토어에 실제로 선 버전**에 맞췄다(사용자 지시 2026-09-11 「스토어 체크해서 버전 딱 맞춰라」). 올린 여덟: 계곡 iOS·안드 1.1.3→1.1.4 · 그리디 iOS 1.1.8→1.1.9·안드 1.1.8→1.2.0 · 등산 iOS 1.0.7→1.0.8·안드 1.0.7→1.0.9 · 낚시 안드 1.1.0→1.1.1 · Tovo iOS 1.0.8→1.0.9. 그대로 여섯(실측과 일치): 쓱쓱 1.3.3 · 싸게날자 1.1.4 · 관상왕 안드 1.0.8 · 나노타임 iOS 1.0.8 · 땅울림 1.0.6 · 살래말래 iOS 1.0.6. ⛔ **심사중인 판은 기준이 안 된다** — 그리디 iOS 1.2.0(build 57)·등산 iOS 1.0.9(32)·낚시 iOS 1.1.1(44) 은 WAITING_FOR_REVIEW 라 아무도 못 받는다. 그래서 iOS 는 그 아래 READY_FOR_SALE 판으로 맞췄다(안드는 세 앱 다 Play 목록에 이미 서 있어 최신으로 올렸다). ⚠⚠ **배포 전에 안드 넷은 Play 콘솔에서 단계적 출시 100% 를 확인해라** — 계곡 1.1.4·그리디 1.2.0·등산 1.0.9·낚시 1.1.1. 특히 등산 1.0.9·낚시 1.1.1 은 **오늘(09-11) 구운 판**이고 그리디 1.2.0 은 09-10 이라 십중팔구 아직 100% 가 아니다. 공개 목록의 버전만으로는 출시 비율을 알 수 없다. ⚠ iOS 넷은 **출시일이 다 이번 주**라 단계적 출시 창(기본 7일) 안이다 — lookup 의 currentVersionReleaseDate 실측: 등산 1.0.8 **09-11(오늘)** · 계곡 1.1.4 09-10 · Tovo 1.0.9 09-10 · 그리디 1.1.9 09-09. iOS 는 스토어에서 손으로 받을 수 있어 안드만큼 치명적이지 않지만, 급하지 않으면 7일 지난 뒤 배포가 원칙이다. ⚠ **ASC 목록의 날짜는 createdDate 라 출시일이 아니다** — 출시일을 재려면 lookup 의 currentVersionReleaseDate 를 봐라(상태 판정은 ASC 의 appStoreState 가 맞다). ℹ Tovo 는 `빌드기록.json` 이 1.0.6 에 멈춰 있어(iOS 빌드 스크립트에 record-build 가 안 붙어 있다) 승격 스크립트가 거부해 --force 로 올렸다. ASC 는 1.0.9 build 41 READY_FOR_SALE, lookup 은 출시 2026-09-10 으로 확인(기억 메모엔 「1.0.9(40) 테플·심사 미제출」로 남아 있었는데 그 뒤 41 이 제출·통과했다). 가려줘·여기는지구·가난티콘은 앱 안에 게이트가 배선돼 있는데 이 파일에 키가 없어 아무도 안 막힌다 — 출시하는 회차에 키를 넣어라(골자 11_빌드와-배포/02 의 전수 현황표).",
+  "_읽어라": "minVersion 은 리포의 최신 버전으로 미리 맞춰 두는 방식이다(사용자 지시 — 싹 빌드한 뒤 몰아서 배포). ⚠ 배포 시점에 **그 버전이 스토어에 실제로 서 있는지** 앱마다 확인하고 올려라. 안 서 있으면 그 앱 이용자 전원이 받을 수 없는 버전을 요구받아 앱이 벽돌이 된다. 확인은 한 줄이면 된다: curl -s 'https://itunes.apple.com/lookup?id=<숫자ID>' | python3 -c \"import json,sys;print(json.load(sys.stdin)['results'][0]['version'])\" — ⚠ country 파라미터를 붙이지 마라(2026-08-24 실측: 붙이면 0건이 온다). 여러 앱을 연달아 물으면 애플이 막으니 10초 이상 띄워라. ⚠ iOS 는 **단계적 출시가 기본으로 켜져 있다**(7일). 그 사이엔 새 버전이 일부에게만 가는데 게이트는 전원을 막으므로, 단계적 출시가 끝난 뒤에 올려라. url 이 빈 항목은 안전장치가 걸려 있다 — updateGate 가 http(s) 주소가 아니면 아예 안 막는다.",
+  "_2026-09-09_스토어실측": "iOS 열·안드 여덟 전수 재측정. 올린 다섯: 낚시 iOS·안드 1.0.9→1.1.0(둘 다 스토어 1.1.0 실측) · 그리디 안드 1.1.6→1.1.8 · 땅울림 iOS 1.0.5→1.0.6·안드 1.0.4→1.0.6. 나머지는 실측과 일치해 그대로. ⚠⚠ 넷틸파이에 올리기 전에 안드 셋(낚시·그리디·땅울림)은 Play 콘솔에서 단계적 출시 100% 를 먼저 확인해라 — 100% 전에 올리면 대상 밖 사용자는 벽돌이다. iOS 도 단계적 출시(기본 7일)가 끝난 뒤가 원칙이다(낚시 1.1.0 은 오늘 심사 통과 직후라 십중팔구 아직 출시 비율이 낮다).",
+  "_2026-09-06_스토어실측": "iOS 열·안드 열셋을 전수 재측정해 minVersion 을 스토어 출시판으로 올렸다. iOS 열(전부 lookup 실측 — lookup 은 늦을 뿐 앞서지 않으므로 출시 확정): 쓱쓱 1.3.3 · 계곡 1.1.3 · 싸게날자 1.1.4 · 그리디 1.1.7 · 등산 1.0.7 · 낚시 1.0.9 · 나노타임 1.0.8 · 땅울림 1.0.5 · Tovo(recorder) 1.0.8 · 살래말래 1.0.6. 안드 일곱 중 여섯 올림: 쓱쓱 1.3.3 · 계곡 1.1.3 · 싸게날자 1.1.4 · 등산 1.0.7 · 관상왕 1.0.8 · 낚시 1.0.9. **그리디 안드만 1.1.6 그대로다** — 1.1.7 은 09-05 에 굽기만 했고 플레이 목록은 아직 1.1.6 이라 올리면 벽돌이다(iOS 는 1.1.7 이 이미 서서 올렸다). 🎉 **땅울림 안드 공개 목록이 처음 섰다**(1.0.4, 그전까지 404) — url 을 채워 게이트를 살렸고 minVersion 1.0.4. 🔒 안드 비공개 잠금은 이제 셋: 나노타임 com.nanotime.app · Tovo com.nogeumbiseo · 살래말래 com.sallaemallae — 이 날도 셋 다 404 재확인, minVersion 1.0.0 고정 유지(사용자 지시 2026-08-30 「더 건들지 마라」. url 이 비어 있어 아무도 안 막는다. 공개 목록이 실제로 설 때까지 손대지 마라). ⚠⚠ **이 파일을 넷틸파이에 올리기 전에**: 안드를 올린 일곱(쓱쓱·계곡·싸게날자·등산·관상왕·낚시·땅울림)은 Play 콘솔에서 **단계적 출시 100%** 를 먼저 확인해라 — 안드는 대상 밖 사용자가 손으로도 새 판을 못 받아 100% 전에 올리면 진짜 벽돌이다. 공개 목록의 버전만으로는 출시 비율을 알 수 없다. iOS 도 원칙은 단계적 출시(기본 7일)가 끝난 뒤 배포다(단, iOS 는 스토어에서 손으로는 받을 수 있어 안드만큼 치명적이지 않다). ⚠ **`recorder` 키는 앱 이름이 Tovo 로 바뀐 뒤에도 그대로다** — 출시된 빌드의 updateGate·adRemote 에 APP_KEY='recorder' 가 박혀 있어서 키를 고치면 그 앱만 원격 설정이 통째로 끊긴다. ⚠ **오프미(iOS com.offme / 안드 com.offme.app)·가려줘(com.garyeojwo 양쪽)는 두 플랫폼 다 미출시 재확인** — 이 파일에 아직 없다. 출시되면 앱 키를 여기와 record-build.mjs 의 KEY_BY_ID 양쪽에 넣어라. 실측법: iOS 는 `itunes.apple.com/lookup?id=<숫자ID>` — **id 외의 파라미터를 붙이지 마라**(붙이면 results 가 통째로 빈다, 2026-08-24·08-29 실측), 연달아 물으면 한도에 걸리니 앱당 10초 이상 띄워라. 안드는 플레이 상세 HTML 에서 [[[\"x.y.z\"]]] 를 긁는다. **ASC 상태가 상위 근거고 lookup 은 보조다**(방금 출시된 판은 lookup 이 몇 시간 늦게 따라온다 — lookup 이 옛 값이라고 승격을 미루진 말되, ASC 확인 없이 lookup 에 없는 판으로 올리는 건 절대 금지).",
+  "_2026-09-16_스토어실측": "게이트가 심긴 15 앱 중 이 파일에 키가 없던 셋(가려줘·여기는지구·가난티콘) 가운데 **가려줘를 넣었다** — ASC 로 iOS 가 실제로 출시된 걸 확인했다(1.0.1 build 16 READY_FOR_SALE, lookup 출시일 09-16). 같은 회차에 **스크랩**의 iOS url·minVersion 도 채웠다(1.0.0 build 6 READY_FOR_SALE, 출시일 09-14) — 키만 있고 url 이 비어 죽어 있던 칸이다. 이제 키는 13, 안 들어온 건 둘(여기는지구 earthhere · 가난티콘 gananticon)이고 **둘 다 ASC 에 앱 자체가 없다**(먼지 com.meonji.app 도 없음). 오프미 com.offme 는 앱은 있으나 PREPARE_FOR_SUBMISSION — 게이트 자체가 아직 안 심겼다. ⚠ 새로 넣은 둘의 minVersion 은 **둘 다 1.0.0(바닥)이라 지금은 아무도 안 막는다** — 정상이다. 키를 미리 세워 둬야 다음 판에서 promote-version.mjs 가 돌고, 그 전엔 막을 대상(1.0.0 미만)이 없다. ⚠ 가려줘 iOS 를 1.0.1 로 올리지 마라 — 오늘 출시라 단계적 출시 창 안이다(대략 09-23 이후). 안드는 둘 다 Play 목록 404 라 url 을 비워 뒀다. 나머지 열두 앱의 minVersion 은 이 회차에 손대지 않았다(09-13 실측 그대로).",
+  "_2026-09-17_스토어실측": "「다 배포됐으니 싹 올려라」(사용자 지시) — ASC(iOS 상태 확정)·Play 공개 목록(안드)으로 전수 재측정하고 스토어 실측판으로 올렸다. **그리디는 손대지 않았다**(1.2.0 유지 — 1.2.2 를 따로 올릴 예정, 사용자 지시). 올린 것: sseuk iOS·안드 1.3.3→1.3.4 · valley iOS·안드 1.1.4→1.1.5 · hiking iOS·안드 1.0.9→1.1.1 · recorder iOS 1.0.9→1.1.1 · sallaemallae iOS 1.0.6→1.0.7 · garyeojwo iOS 1.0.1→1.0.2(RFS 확정, 심사 완료). 그대로(실측=현행): ssagenalja 1.1.4 · gnomy 안드 1.0.8 · fishing 1.1.1 · nanotime iOS 1.0.8 · ttangullim 1.0.6 · scrap iOS 1.0.0(1.0.1(18)은 WAITING_FOR_REVIEW 라 아직 기준 아님). ⚠ 이 회차에 scrap·garyeojwo 키가 처음 넷틸파이로 배포됐다(그전 배포판은 11키). ⚠ 안드 셋(sseuk 1.3.4·valley 1.1.5·hiking 1.1.1)은 Play 공개판=이 버전으로 확인했으나 **공개 목록만으로는 단계적 출시 100% 를 알 수 없다** — 100% 아니면 대상 밖 사용자는 벽돌이다. 사용자가 「다 배포됐다」로 확인해 올렸다. iOS 올린 것들은 ASC createdDate 가 09-14~09-15 라 단계적 출시 창 안일 수 있으나 iOS 는 손으로 받을 수 있어 벽돌은 아니다. ASC 날짜는 createdDate 지 출시일이 아니다.",
+  "_2026-09-25_스토어실측": "ASC(iOS)·Play 공개 목록(안드) 전수 재측정해 스토어 실측판으로 올렸다. 올린 것: iOS griddy 1.2.2→1.2.3(build 81) · scrap 1.0.2→1.0.5(28) · garyeojwo 1.0.2→1.0.3(21). 안드 sseuk 1.3.4→1.3.5 · valley 1.1.5→1.1.6 · griddy 1.2.2→1.2.3 · hiking 1.1.1→1.1.2 · gnomy 1.0.8→1.1.0 · ttangullim 1.0.6→1.0.7. 그대로: ssagenalja 1.1.4 · fishing 1.1.1 · nanotime iOS 1.0.8 · sallaemallae iOS 1.0.7 · 나머지 iOS(sseuk 1.3.4·valley 1.1.5·hiking 1.1.1·ttangullim 1.0.6·recorder 1.1.1) — 그 위 판(1.3.5·1.1.6·1.1.2·1.0.7·1.1.2)은 WAITING_FOR_REVIEW 라 기준 아님. 안드 404 재확인: nanotime·recorder(com.nogeumbiseo)·sallaemallae·scrap(co.nemofactory.scrap)·garyeojwo — url 빈 칸 유지. ⚠ 안드 여섯은 공개 목록 버전만 봤다 — 단계적 출시 100% 는 Play 콘솔에서 확인해라."
+}
